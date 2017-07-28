@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 gem 'bootstrap-sass'
 gem 'devise'
+gem "pundit"
 
 
 group :production do
