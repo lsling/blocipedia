@@ -32,7 +32,7 @@ class ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || record.user == user
+    false
   end
 
   def scope
