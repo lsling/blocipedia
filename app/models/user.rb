@@ -5,4 +5,18 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :wikis
+
+  validates :role, inclusion: {in: %w(standard premium admin)}
+
+  def standard?
+    role == 'standard'
+  end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def premium?
+    role == 'premium'
+  end
 end
