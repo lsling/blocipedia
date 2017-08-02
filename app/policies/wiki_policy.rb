@@ -22,12 +22,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    wikiMaker? || user.role == "admin"
+    # user == record.user || user.admin?
   end
 
-  private
-
-  def wikiMaker?
-    user.id == @record.user_id
-  end
 end

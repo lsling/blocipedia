@@ -7,6 +7,10 @@
 end
 users = User.all
 
+users.each do |user|
+  user.update(confirmed_at: Time.now)
+end
+
 30.times do
     Wiki.create!(
         title: Faker::Lorem.unique.sentence,

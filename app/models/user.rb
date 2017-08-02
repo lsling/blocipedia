@@ -8,15 +8,5 @@ class User < ActiveRecord::Base
 
   validates :role, inclusion: {in: %w(standard premium admin)}
 
-  def standard?
-    role == 'standard'
-  end
-
-  def admin?
-    role == 'admin'
-  end
-
-  def premium?
-    role == 'premium'
-  end
+  enum role: [:standard, :admin, :premium]
 end
