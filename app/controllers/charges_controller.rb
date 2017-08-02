@@ -1,6 +1,8 @@
 class ChargesController < ApplicationController
+
+  after_action :upgrade_account, only: :create
+
   def create
-    @amount = 15_00
     # Creates a Stripe Customer object, for associating
     # with the charge
     customer = Stripe::Customer.create(
@@ -11,7 +13,7 @@ class ChargesController < ApplicationController
     # Where the real magic happens
     charge = Stripe::Charge.create(
       customer: customer.id, # Note -- this is NOT the user_id in your app
-      amount: @amount,
+      amount: 15_00,
       description: "BigMoney Membership - #{current_user.email}",
       currency: 'usd'
     )
@@ -31,7 +33,19 @@ class ChargesController < ApplicationController
     @stripe_btn_data = {
       key: "#{ Rails.configuration.stripe[:publishable_key] }",
       description: "BigMoney Membership - #{current_user.email}",
-      amount: @amount
+      amount: 15_00
     }
+  end
+
+  def downgrade
+    current_user.update_attributes(role: 'standard')
+    flash[:notice] = "You have been cancelled, #{current_user.email}."
+    redirect_to edit_user_registration_path(current_user)
+  end
+
+  private
+
+  def upgrade_account
+      current_user.update_attribute(:role, 'premium')
   end
 end

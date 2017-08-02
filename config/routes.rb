@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get 'about' => 'welcome#about'
+  get 'downgrade' => 'charges#downgrade'
 
   root 'welcome#index'
 end

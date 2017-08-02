@@ -5,7 +5,12 @@
         password_confirmation: 'password'
     )
 end
+
 users = User.all
+
+users.each do |user|
+  user.update(confirmed_at: Time.now)
+end
 
 30.times do
     Wiki.create!(
@@ -19,3 +24,4 @@ end
  puts "Seed finished"
  puts "#{User.count} users created"
  puts "#{Wiki.count} wikis created"
+ puts "You can login with this sample user. email: #{users.first.email}, password: password"
