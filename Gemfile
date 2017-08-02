@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 gem 'bootstrap-sass'
 gem 'devise'
-gem "pundit"
+gem 'pundit'
+gem 'stripe'
+gem 'figaro', '1.0'
 
 
 group :production do
@@ -23,7 +25,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap'
-gem 'figaro'
 
 group :development, :test do
   gem 'byebug'
