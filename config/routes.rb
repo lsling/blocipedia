@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :wikis
   devise_for :users
 
+  get "users/downgrade" => "users#downgrade"
+  post "users/downgrade" => "users#downgrade"
+
   get 'about' => 'welcome#about'
-  get 'downgrade' => 'charges#downgrade'
 
   root 'welcome#index'
 end

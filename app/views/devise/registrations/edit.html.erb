@@ -43,7 +43,7 @@
   <% if current_user.standard? %>
     <%= link_to "Learn about upgrading to Premium!", new_charge_path, class: 'btn btn-success' %>
   <% elsif current_user.premium? %>
-    <%= link_to "Downgrade account", downgrade_path(current_user), class: 'btn btn-warning btn-lg', data: { confirm: "Are you sure you want to downgrade? All your private wikis will become public." }, method: :get %>
+    <%= link_to "Downgrade account", users_downgrade_path(current_user), class: 'btn btn-warning btn-lg', data: { confirm: "Are you sure you want to downgrade? All your private wikis will become public." } %>
   <% end %>
 </div>
 
