@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <p><%= @wiki.body %></p>
+        <p><%= link_to markdown(@wiki.body).html_safe %></p>
         <p> Private? <%= @wiki.private %></p>
     </div>
 

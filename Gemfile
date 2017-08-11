@@ -7,6 +7,7 @@ gem 'devise'
 gem 'pundit'
 gem 'stripe'
 gem 'figaro'
+gem 'redcarpet'
 
 
 group :production do

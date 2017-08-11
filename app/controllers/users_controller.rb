@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def downgrade
     current_user.update_attributes(role: "standard")
     current_user.wikis.where(private: true).update_all(private: false)
