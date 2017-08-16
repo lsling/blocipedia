@@ -1,33 +1,40 @@
 class CollaboratorsController < ApplicationController
-  def create
-    @wiki = Wiki.find(params[:wiki_id])
-    @user = User.find_by_email(params[:collaborator][:user])
+  before_action :wiki_set
 
-    if User.exists?(@user)
-      @collaborator = @wiki.collaborators.new(wiki_id: @wiki.id, user_id: @user.id)
+
+    def new
+      @collaborator = @wiki.Collaborator.new
+    end
+
+    def show
+      @collaborator = Collaborator.find(params[:id])
+    end
+
+    def create
+      @collaborator = @wiki.Collaborator.new(collaborator_params)
 
       if @collaborator.save
-        flash[:notice] = "User added"
+        flash[:notice] = "Callaboration was saved."
+        redirect_to @wiki
       else
-        flash[:error] = "Error"
+        flash[:notice] = "Error. Could not add the collaborator."
+        redirect_to @wiki
+    end
+
+    def destroy
+      @collaborator = Collaborator.find(params[:id])
+      if @collaborator.destroy
+        flash[:notice] = "#{@collaborator.user.email} was removed."
+        redirect_to @wiki
+      else
+        flash[:notice] = "Error. Could not remove the collaborator."
+        redirect_to @wiki
       end
-      redirect_to @wiki
-    else
-      flash[:error] = "Error, no such user"
-      redirect_to @wiki
     end
-  end
 
-  def destroy
+  private
+
+  def wiki_set
     @wiki = Wiki.find(params[:wiki_id])
-    @collaborator = Collaborator.find(params[:id])
-
-    if @collaborator.destroy
-      flash[:notice] = "Delete successfull"
-      redirect_to @wiki
-    else
-      flash.now[:alert] = "There was an error"
-      redirect_to @wiki
-    end
   end
 end
