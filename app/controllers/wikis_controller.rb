@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @wikis = user_signed_in? && !current_user.standard? ? Wiki.all : Wiki.where(private: false)
+    @wikis = policy_scope(Wiki)
   end
 
   def show

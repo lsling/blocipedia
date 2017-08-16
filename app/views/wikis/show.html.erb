@@ -4,6 +4,7 @@
     <div class="col-md-8">
         <p><%= link_to markdown(@wiki.body).html_safe %></p>
         <p> Private? <%= @wiki.private %></p>
+        <%= render partial: 'collaborators/list' %>
     </div>
 
     <div class="col-md-4">

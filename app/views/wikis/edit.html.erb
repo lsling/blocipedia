@@ -24,6 +24,8 @@
 
             <div class="form-group">
                 <%= f.submit "Save", class: 'btn btn-success' %>
+                Collaborators: <%= @wiki.collaborators.count %>
+                <%= render partial: 'collaborators/form', locals: { wiki: @wiki } %>
             </div>
         <% end %>
     </div>
