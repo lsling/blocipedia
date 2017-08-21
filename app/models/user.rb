@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_many :collaborators
-  has_many :wikis
-  has_many :shared_wikis, through: :collaborators, source: :wiki
+  has_many :wikis, through: :collaborators
 
   validates :role, inclusion: {in: %w(standard premium admin)}
 

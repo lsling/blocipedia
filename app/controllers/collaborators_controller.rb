@@ -1,5 +1,6 @@
 class CollaboratorsController < ApplicationController
-  before_action :wiki_set
+  before_action :set_wiki_id
+
 
 
     def new
@@ -14,7 +15,7 @@ class CollaboratorsController < ApplicationController
       @collaborator = @wiki.Collaborator.new(collaborator_params)
 
       if @collaborator.save
-        flash[:notice] = "Callaboration was saved."
+        flash[:notice] = "Collaborator was saved."
         redirect_to @wiki
       else
         flash[:notice] = "Error. Could not add the collaborator."
@@ -34,7 +35,7 @@ class CollaboratorsController < ApplicationController
 
   private
 
-  def wiki_set
+  def set_wiki_id
     @wiki = Wiki.find(params[:wiki_id])
   end
 end
