@@ -11,7 +11,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def create
-    @collaborator = @wiki.collaborators.new(:user_id => params[:user_id])
+    @collaborator = @wiki.collaborators.new(:user_id => params[:collaborator][:user_id])
 
     if @collaborator.save
        flash[:notice] = "Collaborator was added to this wiki."
